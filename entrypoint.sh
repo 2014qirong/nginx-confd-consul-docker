@@ -23,4 +23,4 @@ done
 
 echo "[nginx-confd] Initial config created. Starting confd"
 
-confd -node "$ETCD_NODE"
+confd --interval 5 -node "$ETCD_NODE"

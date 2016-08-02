@@ -6,4 +6,4 @@ keys = [
     "/hello-world-expressjs-docker",
 ]
 check_cmd = "nginx -t -c {{.src}}"
-reload_cmd = "nginx -s reload"
+reload_cmd = "nginx -s reload || nginx -s stop || nginx"
