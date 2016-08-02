@@ -1,8 +1,6 @@
-FROM smebberson/alpine-confd
+FROM waleedsamy/alpine-confd
 
 RUN apk add --update nginx bash curl && rm -rf /var/cache/apk/*
-
-COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY confd /etc/confd
 

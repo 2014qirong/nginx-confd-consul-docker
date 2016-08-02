@@ -2,9 +2,9 @@
 
 # source: https://github.com/yaronr/dockerfile/blob/master/haproxy-confd
 
-if [ -z "$CONSUL_NODE" ]
+if [ -z "$ETCD_NODE" ]
 then
-  echo "Missing CONSUL_NODE env var"
+  echo "Missing ETCD_NODE env var"
   exit -1
 fi
 
@@ -12,15 +12,15 @@ fi
 # The shell waits for all commands in the pipeline to terminate before returning a value.
 set -eo pipefail
 
-echo "[nginx-confd] booting container. CONSUL: $CONSUL_NODE"
+echo "[nginx-confd] booting container. ETCD: $ETCD_NODE"
 
 export HOSTNAME=`hostname`
 
-until confd -onetime -backend consul -node "$CONSUL_NODE"; do
+until confd -onetime -node "$ETCD_NODE"; do
   echo "[nginx-confd] waiting for confd to refresh nginx config files"
   sleep 3
 done
 
 echo "[nginx-confd] Initial config created. Starting confd"
 
-confd -node "$CONSUL_NODE"
+confd --interval 5 -node "$ETCD_NODE"
