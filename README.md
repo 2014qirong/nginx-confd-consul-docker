@@ -6,7 +6,8 @@ simple nginx load balancer load balancer on top of [hello-world-expressjs-docker
 
 * run
  ```
- docker run -d -e "CONSUL_NODE=$CONSUL_IP:8500" -p $HOST_IP:80:80 waleedsamy/nginx-confd-consul-docker
+ # cause this run in coreos, you will have no trouble in using etcd
+ docker run -d -e "ETCD_NODE=$COREOS_PRIVATE_IPV4:2379" -p $COREOS_PUBLIC_IPV4:80:80 waleedsamy/nginx-confd-consul-docker:etcd
  ```
 
 

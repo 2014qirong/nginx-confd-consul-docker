@@ -1,4 +1,5 @@
 [template]
+prefix = "/traffics.de"
 src = "nginx.conf.tmpl"
 dest = "/etc/nginx/nginx.conf"
 keys = [
